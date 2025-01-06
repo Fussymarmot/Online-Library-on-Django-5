@@ -1,4 +1,4 @@
-![Awesome ReadME](https://i.yapx.ru/YUkSf.png)
+![Awesome ReadME](https://ltdfoto.ru/image/m051au)
 
 # Online Library on Django 5
 
