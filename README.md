@@ -1,4 +1,4 @@
-![Awesome ReadME](https://ltdfoto.ru/image/m051au)
+![Awesome ReadME](https://ltdfoto.ru/images/2025/01/06/SNIMOK-EKRANA-2025-01-06-135213.png)
 
 # Online Library on Django 5
 
