@@ -44,5 +44,5 @@ pip install -r requirements.txt
 
 # Админская панель
 Админская панель находится на странице /admin <br>
-логин:admin <br>
+Логин:admin <br>
 Пароль:1
