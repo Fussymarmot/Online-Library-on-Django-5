@@ -1,4 +1,4 @@
-![Awesome ReadME]([https://i.yapx.ru/YUkSf.png](https://i.yapx.ru/YUkSf.png))
+![Awesome ReadME](https://i.yapx.ru/YUkSf.png)
 
 # Online Library on Django 5
 
