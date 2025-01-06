@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %}Список книг{% endblock %}
+
+{% block content %}
+<h1>Список книг</h1>
+<form method="get" class="form-group">
+    <label for="query_title">Поиск по названию:</label>
+    <input type="text" name="q_title" id="query_title" placeholder="Введите название..." value="{{ query_title }}">
+
+    <label for="query_author">Поиск по автору:</label>
+    <input type="text" name="q_author" id="query_author" placeholder="Введите автора..." value="{{ query_author }}">
+
+    <label for="genre">Жанр:</label>
+    <select name="genre" id="genre">
+        <option value="">Все жанры</option>
+        {% for genre in genres %}
+        <option value="{{ genre.name }}" {% if genre.name == genre_filter %}selected{% endif %}>
+            {{ genre.name }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <button type="submit" class="btn">Найти</button>
+    <a href="{% url 'add_book' %}" class="btn">Добавить книгу</a>
+</form>
+
+<div>
+    {% for book in books %}
+    <div class="book-card">
+        {% if book.cover %}
+            <img src="{{ book.cover.url }}" alt="{{ book.title }}">
+        {% else %}
+            <div style="min-width: 145px;  min-height: 210px; border-radius: 5px; background-color: #f4f4f4; display: flex; align-items: center; justify-content: center; color: #888; margin-right: 90px; object-fit: cover;">
+                <span>Нет обложки</span>
+            </div>
+        {% endif %}
+        <div class="book-details">
+            <p class="book-title">{{ book.title }}</p>
+            <p class="book-author">Автор: {{ book.author }}</p>
+            <p>Жанр: {{ book.genre.name }}</p>
+    
+            <!-- Описание книги -->
+            <div class="book-description">
+                <p class="short-text">{{ book.description|truncatechars:150 }}</p>
+                <p class="full-text" style="display: none;">{{ book.description }}</p>
+                {% if book.description|length > 150 %}
+                    <span class="toggle-button">Развернуть</span>
+                {% endif %}
+            </div>
+            
+        </div>
+    </div>    
+    {% endfor %}
+</div>
+
+<!-- Скрипт для переключения видимости описания -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const descriptions = document.querySelectorAll('.book-description');
+
+    descriptions.forEach(description => {
+        const shortText = description.querySelector('.short-text');
+        const fullText = description.querySelector('.full-text');
+        const toggleButton = description.querySelector('.toggle-button');
+
+        if (toggleButton) { // Проверяем, есть ли кнопка
+            toggleButton.addEventListener('click', () => {
+                const isExpanded = fullText.style.display === 'block';
+
+                if (isExpanded) {
+                    fullText.style.display = 'none';
+                    shortText.style.display = 'block';
+                    toggleButton.textContent = 'Развернуть';
+                } else {
+                    fullText.style.display = 'block';
+                    shortText.style.display = 'none';
+                    toggleButton.textContent = 'Скрыть';
+                }
+            });
+        }
+    });
+});
+
+
+</script>
+
+<!-- Пагинация -->
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">« Первая</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Назад</a>
+        {% endif %}
+
+        <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Вперед</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Последняя »</a>
+        {% endif %}
+    </span>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавить книгу{% endblock %}
+
+{% block content %}
+<h1>Добавить книгу</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="id_title">Название</label>
+        {{ form.title }}
+    </div>
+    <div class="form-group">
+        <label for="id_author">Автор</label>
+        {{ form.author }}
+    </div>
+    <div class="form-group">
+        <label for="id_genre">Жанр</label>
+        {{ form.genre }}
+    </div>
+    <div class="form-group">
+        <label for="id_description">Описание</label>
+        {{ form.description }}
+    </div>
+    <div class="form-group">
+        <label for="id_cover">Обложка</label>
+        {{ form.cover }}
+    </div>
+    <button type="submit" class="btn">Сохранить</button>
+    <a href="{% url 'book_list' %}" class="btn">Назад</a>
+</form>
+{% endblock %}

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Библиотека{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 0.5rem;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center; /* Центрирует содержимое */
+        }
+
+        .btn {
+            display: inline-block;
+            width: 150px;
+            height: 40px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 40px;
+            margin-top: 10px; /* Отступ сверху */
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column; /* Выравнивает элементы вертикально */
+            align-items: center; /* Центрирует элементы по горизонтали */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 300px; /* Уменьшенный размер полей */
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px; /* Расстояние между полями и кнопкой */
+        }
+
+        select {
+            width: 320px; /* Уменьшенный размер полей */
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px; /* Расстояние между полями и кнопкой */
+        }
+
+        textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #333;
+            color: white;
+            margin-top: 2rem;
+        }
+
+        /* Стили для карточек книг */
+        .book-card {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            background: #fff;
+            padding: 15px; /* Добавим отступ внутри карточки */
+        }
+
+        .book-card img {
+            max-width: 180px;
+            max-height: 210px;
+            object-fit: cover;
+            margin-right: 15px; /* Расстояние между картинкой и текстом */
+            border-radius: 5px;
+            
+        }
+
+        .book-details {
+            padding: 1px;
+            display: flex;
+            flex-direction: column;
+            
+        }
+
+        .book-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px; /* Уменьшить отступ снизу */
+        }
+
+        .book-author {
+            color: #555;
+            margin-bottom: 5px; /* Уменьшить отступ снизу */
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            
+        }
+
+        .pagination .step-links a {
+            margin: 0 5px;
+            padding: 5px 10px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            color: #333;
+            border-radius: 3px;
+        }
+
+        .pagination .step-links span {
+            margin: 0 5px;
+            padding: 5px 10px;
+            font-weight: bold;
+        }
+
+        .pagination .step-links a {
+            margin: 0 5px;
+            padding: 5px 10px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            color: #333;
+            border-radius: 3px;
+        }
+
+        .pagination .step-links span {
+            margin: 0 5px;
+            padding: 5px 10px;
+            font-weight: bold;
+        }
+
+        /* Стили для описания книги */
+        .book-description {
+            display: flex;
+            flex-direction: column; /* Выравниваем элементы вертикально */
+            align-items: center;    /* Центрируем элементы по горизонтали */
+            text-align: center;   
+            font-size: 14px;
+            color: #555;
+            margin-top: 0px;
+
+        }
+
+        .book-description .short-text {
+            display: block;
+        }
+
+        .book-description .full-text {
+            display: none;
+        }
+
+        .book-description .toggle-button {
+            color: #4CAF50;
+            cursor: pointer;
+            text-decoration: underline;
+            margin-top: 0px;
+            display: inline-block;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Библиотека</h1>
+    </header>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer>
+        <p>Создано с ❤️ на Django</p>
+    </footer>
+</body>
+</html>
